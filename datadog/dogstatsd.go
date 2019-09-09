@@ -17,8 +17,8 @@ type DogStatsdSink struct {
 }
 
 // NewDogStatsdSink is used to create a new DogStatsdSink with sane defaults
-func NewDogStatsdSink(addr string, hostName string) (*DogStatsdSink, error) {
-	client, err := statsd.New(addr)
+func NewDogStatsdSink(addr string, hostName string, buflen int) (*DogStatsdSink, error) {
+	client, err := statsd.NewBuffered(addr, buflen)
 	if err != nil {
 		return nil, err
 	}
