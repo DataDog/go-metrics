@@ -117,7 +117,7 @@ func (s *DogStatsdSink) IncrCounterWithLabels(key []string, val float32, labels 
 func (s *DogStatsdSink) AddSampleWithLabels(key []string, val float32, labels []metrics.Label) {
 	flatKey, tags := s.getFlatkeyAndCombinedLabels(key, labels)
 	rate := 1.0
-	s.client.TimeInMilliseconds(flatKey, float64(val), tags, rate)
+	s.client.Distribution(flatKey, float64(val), tags, rate)
 }
 
 func (s *DogStatsdSink) getFlatkeyAndCombinedLabels(key []string, labels []metrics.Label) (string, []string) {
